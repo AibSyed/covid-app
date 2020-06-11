@@ -1,5 +1,5 @@
 body {
-	background-color: #ededed;
+	background-color: #e2e2e2;
 }
 
 .container {
@@ -7,6 +7,7 @@ body {
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
+	margin: 20px;
 }
 
 .image {

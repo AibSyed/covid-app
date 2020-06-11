@@ -5,14 +5,14 @@ import cx from 'classnames';
 
 import styles from './Cards.module.css'
 
+//cards data is coming from index.js using props
 function Cards({data:{confirmed, recovered, deaths, lastUpdate}}) {
     //if there is no confirmed data then show 'Loading...'
-    console.log(confirmed);
     if(!confirmed) {
         return 'Loading...';
-    }
-
-
+	}
+	
+//render 3 different cards using current data
     return (
 			<div className={styles.container}>
 				<Grid container spacing={3} justify="center">
@@ -28,7 +28,7 @@ function Cards({data:{confirmed, recovered, deaths, lastUpdate}}) {
                             {/* Refactor {last update to be more legible with Date function*/}
 							<Typography color="textSecondary">{new Date(lastUpdate).toDateString()}</Typography>
 							<Typography variant="body2">
-								Number of active cases of COVID-19
+								Current Active COVID-19 cases
 							</Typography>
 						</CardContent>
 					</Grid>
@@ -37,13 +37,13 @@ function Cards({data:{confirmed, recovered, deaths, lastUpdate}}) {
 							<Typography color="textSecondary" gutterBottom>
 								Recovered
 							</Typography>
-                            							<Typography variant="h5">
-                                <CountUp start={0} end={recovered.value} duration={2.5} separator="," />
+                            <Typography variant="h5">
+                            <CountUp start={0} end={recovered.value} duration={2.5} separator="," />
                             
                             </Typography>
 							<Typography color="textSecondary">{new Date(lastUpdate).toDateString()}</Typography>
 							<Typography variant="body2">
-								Number of recovered cases of COVID-19
+								Current Number of Recoveries from COVID-19
 							</Typography>
 						</CardContent>
 					</Grid>
@@ -58,7 +58,7 @@ function Cards({data:{confirmed, recovered, deaths, lastUpdate}}) {
                             </Typography>
 							<Typography color="textSecondary">{new Date(lastUpdate).toDateString()}</Typography>
 							<Typography variant="body2">
-								Number of deaths caused by COVID-19
+								Current number of Deaths from COVID-19
 							</Typography>
 						</CardContent>
 					</Grid>

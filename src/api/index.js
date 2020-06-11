@@ -4,7 +4,8 @@ import axios from 'axios';
 const url = 'https://covid19.mathdro.id/api';
 
 //try will execute if fetch is successful, otherwise error will prompt
-//fields are destructured from data object so we dont have to say data.confirm, data.recovered etc...
+//fields are destructured from data object so we dont have to say data.confirm, data.recovered, etc...
+//fetchData is only returning the data that is required
 export const fetchData = async (country) => {
 	let variableURL = url;
 
