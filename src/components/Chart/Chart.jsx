@@ -73,7 +73,7 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
 //when country is chosen from drop down show a bar chart, else show line chart
   return (
     <div className={styles.container}>
-      {country ? barChart : lineChart}
+      {country ? barChart : barChart}
 
     </div>
   );

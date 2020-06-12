@@ -33,12 +33,23 @@ class App extends React.Component {
 		const { data, country } = this.state;
 		return (
 			<div className={styles.container}>
-				<Typography color="textPrimary">
+				{' '}
+				<Typography style={{ padding: '0px 0px 10px 0px' }} color="textPrimary">
 					<h1>COVID-19 Dashboard</h1>
 				</Typography>
-				<Cards data={data} />
 				<CountryPicker handleCountryChange={this.handleCountryChange} />
+				<Cards data={data} />
 				<Chart data={data} country={country} />
+				<Typography>
+					<h5>Data Source:</h5>
+					<h5>
+						Statistics derived from{' '}
+						<a href="https://covid19.mathdro.id/api">
+							https://covid19.mathdro.id/api
+						</a>{' '}
+						which serves data from John Hopkins University CSSE as a JSON API.
+					</h5>
+				</Typography>
 			</div>
 		);
 	}

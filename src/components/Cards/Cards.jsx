@@ -11,6 +11,19 @@ function Cards({data:{confirmed, recovered, deaths, lastUpdate}}) {
     if(!confirmed) {
         return 'Loading...';
 	}
+
+	const confirmedCalc = confirmed.value / (deaths.value + recovered.value + confirmed.value);
+
+	const confirmedPercentage = ((confirmedCalc * 100).toFixed(1))		
+
+	const recoveredCalc = recovered.value / (deaths.value + recovered.value + confirmed.value);
+
+	const recoveredPercentage = ((recoveredCalc * 100).toFixed(1))	
+
+	const deathCalc = deaths.value / (deaths.value + recovered.value + confirmed.value);
+
+	const deathPercentage = ((deathCalc * 100).toFixed(1))
+	
 	
 //render 3 different cards using current data
     return (
@@ -23,12 +36,14 @@ function Cards({data:{confirmed, recovered, deaths, lastUpdate}}) {
 							</Typography>
 							<Typography variant="h5">
                                 <CountUp start={0} end={confirmed.value} duration={2.5} separator="," />
-                            
-                            </Typography>
+							</Typography>
+							<Typography variant="h6">
+								<i>(<CountUp start={0} end={confirmedPercentage} duration={2.5} decimals={1} decimal="." suffix="%" />)</i>
+							</Typography>
                             {/* Refactor {last update to be more legible with Date function*/}
 							<Typography color="textSecondary">{new Date(lastUpdate).toDateString()}</Typography>
 							<Typography variant="body2">
-								Current Active COVID-19 cases
+								Active COVID-19 cases
 							</Typography>
 						</CardContent>
 					</Grid>
@@ -39,11 +54,13 @@ function Cards({data:{confirmed, recovered, deaths, lastUpdate}}) {
 							</Typography>
                             <Typography variant="h5">
                             <CountUp start={0} end={recovered.value} duration={2.5} separator="," />
-                            
                             </Typography>
+							<Typography variant="h6">
+								<i>(<CountUp start={0} end={recoveredPercentage} duration={2.5} decimals={1} decimal="." suffix="%" />)</i>
+							</Typography>							
 							<Typography color="textSecondary">{new Date(lastUpdate).toDateString()}</Typography>
 							<Typography variant="body2">
-								Current Number of Recoveries from COVID-19
+								Recovored COVID-19 cases
 							</Typography>
 						</CardContent>
 					</Grid>
@@ -52,17 +69,19 @@ function Cards({data:{confirmed, recovered, deaths, lastUpdate}}) {
 							<Typography color="textSecondary" gutterBottom>
 								Deaths
 							</Typography>
-                            							<Typography variant="h5">
-                                <CountUp start={0} end={deaths.value} duration={2.5} separator="," />
-                            
+                            <Typography variant="h5">
+                        	<CountUp start={0} end={deaths.value} duration={2.5} separator="," />
                             </Typography>
+							<Typography variant="h6">
+								<i>(<CountUp start={0} end={deathPercentage} duration={2.5} decimals={1} decimal="." suffix="%" />)</i>
+							</Typography>								
 							<Typography color="textSecondary">{new Date(lastUpdate).toDateString()}</Typography>
 							<Typography variant="body2">
-								Current number of Deaths from COVID-19
+								Fatal COVID-19 cases
 							</Typography>
 						</CardContent>
 					</Grid>
-				</Grid>
+				</Grid>			
 			</div>
 		);
 }

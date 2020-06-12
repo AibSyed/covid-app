@@ -1,8 +1,14 @@
 .formControl {
-	width: 30%;
-	margin-bottom: 30px !important;
+	width: 40%;
+	margin-bottom: 0px !important;
 }
 
 .countrySelect {
 	background-color: #e2e2e2;
+}
+
+@media (max-width: 770px) {
+	.formControl {
+		width: 85%;
+	}
 }

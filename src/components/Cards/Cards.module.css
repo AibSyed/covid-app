@@ -8,14 +8,17 @@
 
 .infected {
 	border-bottom: 10px solid #ef9730;
+	width: 320px;
 }
 
 .recovered {
 	border-bottom: 10px solid #201d72;
+	width: 320px;
 }
 
 .deaths {
 	border-bottom: 10px solid #e62000;
+	width: 320px;
 }
 
 @media (max-width: 770px) {
