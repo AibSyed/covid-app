@@ -12,6 +12,8 @@ function Cards({data:{confirmed, recovered, deaths, lastUpdate}}) {
         return 'Loading...';
 	}
 
+    const totalCases = deaths.value + recovered.value + confirmed.value;
+
 	const confirmedCalc = confirmed.value / (deaths.value + recovered.value + confirmed.value);
 
 	const confirmedPercentage = ((confirmedCalc * 100).toFixed(1))		
@@ -23,11 +25,15 @@ function Cards({data:{confirmed, recovered, deaths, lastUpdate}}) {
 	const deathCalc = deaths.value / (deaths.value + recovered.value + confirmed.value);
 
 	const deathPercentage = ((deathCalc * 100).toFixed(1))
+
 	
 	
 //render 3 different cards using current data
     return (
 			<div className={styles.container}>
+			<Grid style={{ padding: '0px 0px 20px 0px', textAlign: 'center' }} xs={12}>					<Typography variant="h6" color="textSecondary" gutterBottom> Total number of cases: &nbsp;<CountUp start={0} end={totalCases} duration={2.5} separator="," />
+							</Typography>
+							</Grid>
 				<Grid container spacing={3} justify="center">
 					<Grid item component={Card} xs={12} md={3} className={cx(styles.card, styles.infected)}>
 						<CardContent>
@@ -67,7 +73,7 @@ function Cards({data:{confirmed, recovered, deaths, lastUpdate}}) {
 					<Grid item component={Card} xs={12} md={3} className={cx(styles.card, styles.deaths)}>
 						<CardContent>
 							<Typography color="textSecondary" gutterBottom>
-								Deaths
+								Fatalities
 							</Typography>
                             <Typography variant="h5">
                         	<CountUp start={0} end={deaths.value} duration={2.5} separator="," />

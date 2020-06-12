@@ -23,4 +23,12 @@ body {
 	.image {
 		width: 100%;
 	}
+
+	.title {
+		text-align: center;
+	}
+
+	.subText {
+		text-align: center;
+	}
 }

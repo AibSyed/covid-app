@@ -33,7 +33,7 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
             fill: true,
           }, {
             data: dailyData.map((data) => data.deaths),
-            label: 'Deaths',
+            label: 'Fatalities',
               borderColor: '#e62000',
             backgroundColor: 'rgba(255, 0, 0, 0.5)',
             fill: true,
@@ -53,7 +53,7 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
     confirmed ? (
       <Bar
         data={{
-          labels: ['Infected', 'Recovered', 'Deaths'],
+          labels: ['Infected', 'Recovered', 'Fatalities'],
           datasets: [
             {
               label: 'People',
@@ -73,7 +73,7 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
 //when country is chosen from drop down show a bar chart, else show line chart
   return (
     <div className={styles.container}>
-      {country ? barChart : barChart}
+      {country ? barChart : lineChart}
 
     </div>
   );
