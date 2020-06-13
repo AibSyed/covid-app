@@ -31,7 +31,7 @@ function Cards({data:{confirmed, recovered, deaths, lastUpdate}}) {
 //render 3 different cards using current data
     return (
 			<div className={styles.container}>
-			<Grid style={{ padding: '0px 0px 20px 0px', textAlign: 'center' }} xs={12}>					<Typography variant="h6" color="textSecondary" gutterBottom> Total number of cases: &nbsp;<CountUp start={0} end={totalCases} duration={2.5} separator="," />
+			<Grid style={{ padding: '0px 0px 20px 0px', textAlign: 'center' }} xs={12}>					<Typography variant="h6" color="textSecondary" gutterBottom> Total number of reported cases: &nbsp;<CountUp start={0} end={totalCases} duration={2.5} separator="," />
 							</Typography>
 							</Grid>
 				<Grid container spacing={3} justify="center">
