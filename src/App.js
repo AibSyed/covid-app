@@ -63,6 +63,13 @@ class App extends React.Component {
 							</a>{' '}
 							which serves data from John Hopkins University CSSE as a JSON API.
 						</h5>
+						<h5>
+							Visit{' '}
+							<a href="https://www.cdc.gov/coronavirus/2019-ncov/index.html">
+								https://www.cdc.gov/coronavirus
+							</a>{' '}
+							to get the latest information about COVID-19.
+						</h5>
 						<h6>&copy;2020 Created By Shoaib (Aib) Syed</h6>
 					</Typography>
 				</div>
