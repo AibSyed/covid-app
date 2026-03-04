@@ -1,13 +1,13 @@
 {
   "name": "health-signal-dashboard",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "private": true,
   "packageManager": "pnpm@10.6.5",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint .",
+    "lint": "eslint . --max-warnings 0",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -19,8 +19,15 @@
     "docs:check": "pnpm run docs:lint && pnpm run docs:mermaid"
   },
   "dependencies": {
+    "@mantine/charts": "^8.3.5",
+    "@mantine/core": "^8.3.5",
+    "@mantine/dates": "^8.3.5",
+    "@mantine/hooks": "^8.3.5",
+    "@tabler/icons-react": "^3.34.1",
     "@tanstack/react-query": "^5.90.21",
-    "lucide-react": "^0.577.0",
+    "@tanstack/react-table": "^8.21.3",
+    "dayjs": "^1.11.18",
+    "framer-motion": "^12.35.0",
     "next": "^16.1.6",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
@@ -28,17 +35,13 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.58.2",
-    "@tailwindcss/postcss": "^4.2.1",
     "@types/node": "^25.3.3",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "autoprefixer": "^10.4.27",
     "eslint": "^9.39.3",
     "eslint-config-next": "^16.1.6",
     "jsdom": "^28.1.0",
     "markdownlint-cli2": "^0.21.0",
-    "postcss": "^8.5.8",
-    "tailwindcss": "^4.2.1",
     "typescript": "^5.9.3",
     "vitest": "^4.0.18"
   }

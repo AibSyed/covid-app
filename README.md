@@ -1,38 +1,46 @@
-# Health Signal Dashboard
+# Global Health Signal Dashboard
 
-Health Signal Dashboard is a production-grade global health telemetry cockpit focused on trust, freshness visibility, and degraded-mode resilience.
+Global Health Signal Dashboard is an operations-grade command center for rapid health telemetry scanning across regions and providers.
 
-## Highlights
-- Operator-first signal cards and regional comparison workflow.
-- Source status and freshness budget surfaced in UI.
-- Strict runtime validation prevents malformed payload leaks.
-- Fallback snapshot keeps core experience stable during provider failures.
+## Product Value
+- Fast top-level signal scan with confidence and freshness metadata.
+- Region drill-down pages for decision support.
+- Source diagnostics for provider reliability and fallback transparency.
+- Fallback-safe operation under upstream provider instability.
+
+## Experience Map
+- `/` command center overview
+- `/regions/[code]` region command brief
+- `/trends` timeline drift workspace
+- `/sources` provider diagnostics and contract state
 
 ## Architecture
 ```mermaid
 flowchart LR
-  O["Operator"] --> UI["Next.js App Router UI"]
+  U["Operator"] --> UI["Mantine Command UI"]
   UI --> Q["TanStack Query Cache"]
-  Q --> RH["/app/api/health-signals Route Handler"]
-  RH --> AGG["Provider Aggregator"]
-  AGG --> VAL["Zod Payload Validation"]
-  AGG --> DS["disease.sh API"]
-  AGG --> SNAP["Static Fallback Snapshot"]
-  VAL --> UI
+  Q --> RH["/app/api/signals Route Handler"]
+  RH --> ORCH["Signal Orchestrator"]
+  ORCH --> DS["Disease.sh Adapter"]
+  ORCH --> FB["Internal Fallback Snapshot"]
+  ORCH --> Z["Zod View Model Validation"]
+  Z --> UI
 ```
 
 ## Deployment Model
-- Platform: Vercel (production)
-- Branch strategy: `master` auto-promotes to production
-- Previews: feature branch and PR previews when Git integration is active
+- Platform: Vercel
+- Production branch: `master`
+- PR branches: preview deployments when Git integration is active
 
-## Tech Stack
-- Next.js 16 App Router
-- React 19 + TypeScript strict mode
-- TanStack Query v5
-- Zod v4
-- Tailwind CSS v4
-- Vitest + Playwright
+## Security Posture
+- Server-side provider endpoint control via environment variables.
+- No client-exposed secrets.
+- CSP and hardening headers configured in [`next.config.ts`](/Users/aib/Desktop/Development/Projects/_rewrites/covid-app/next.config.ts).
+
+## Environment
+Copy `.env.example` to `.env.local`.
+
+- `HEALTH_PRIMARY_BASE_URL`: optional override for provider base URL.
 
 ## Local Development
 ```bash
@@ -48,14 +56,7 @@ pnpm run audit:high
 pnpm run docs:check
 ```
 
-## Environment
-Copy `.env.example` to `.env.local`.
-
-- `HEALTH_PRIMARY_BASE_URL` provider base override.
-- `HEALTH_ALL_PATH` global summary endpoint override.
-- `HEALTH_COUNTRIES_PATH` country endpoint override.
-
 ## Troubleshooting
-- If provider data fails, verify endpoint envs and health in logs.
-- If docs CI fails, run `pnpm run docs:check` and repair markdown/mermaid.
-- If regional table appears empty, clear filter input and refetch.
+- If live provider fetch fails, fallback mode should activate automatically.
+- If region route returns 404, verify the region code exists in the latest payload.
+- If docs checks fail, run `pnpm run docs:check` and fix markdown or Mermaid issues.
