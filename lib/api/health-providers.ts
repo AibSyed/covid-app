@@ -1,5 +1,6 @@
 import { fallbackHealthSignals } from "@/features/health/fallback";
 import { healthSignalPayloadSchema, type HealthSignalPayload } from "@/features/health/schema";
+import { env } from "@/lib/env";
 import { fetchWithTimeout } from "@/lib/http";
 
 type DiseaseGlobal = { cases: number; active: number; deaths: number; updated: number };
@@ -19,8 +20,8 @@ function toIso(timestamp: number) {
 export async function getHealthSignals(): Promise<HealthSignalPayload> {
   try {
     const [globalRes, countriesRes] = await Promise.all([
-      fetchWithTimeout("https://disease.sh/v3/covid-19/all", {}, 7000),
-      fetchWithTimeout("https://disease.sh/v3/covid-19/countries?allowNull=false", {}, 7000),
+      fetchWithTimeout(`${env.HEALTH_PRIMARY_BASE_URL}${env.HEALTH_ALL_PATH}`, {}, 7000),
+      fetchWithTimeout(`${env.HEALTH_PRIMARY_BASE_URL}${env.HEALTH_COUNTRIES_PATH}`, {}, 7000),
     ]);
 
     if (!globalRes.ok || !countriesRes.ok) {
