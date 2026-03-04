@@ -1,7 +1,12 @@
 import { expect, test } from "@playwright/test";
 
-test("renders health signal dashboard hero", async ({ page }) => {
+test("renders command center dashboard", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByRole("heading", { name: /global resilience telemetry for modern response teams/i })).toBeVisible();
-  await expect(page.getByPlaceholder(/type a country name/i)).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Global Health Signal Command Center" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Global Trend Drift" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Regional Comparison Grid" })).toBeVisible();
+
+  await page.getByRole("link", { name: "Trends" }).click();
+  await expect(page).toHaveURL(/\/trends$/);
+  await expect(page.getByRole("heading", { name: "Timeline Drift and Recency Intelligence" })).toBeVisible();
 });

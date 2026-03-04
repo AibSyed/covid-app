@@ -1,19 +1,38 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Sans, Playfair_Display } from "next/font/google";
+import { Space_Grotesk, Sora } from "next/font/google";
+import "@mantine/core/styles.css";
+import "@mantine/charts/styles.css";
+import { ColorSchemeScript, mantineHtmlProps } from "@mantine/core";
 import { Providers } from "@/components/providers";
 import "@/app/globals.css";
 
-const heading = Playfair_Display({ subsets: ["latin"], variable: "--font-heading" });
-const body = IBM_Plex_Sans({ subsets: ["latin"], variable: "--font-body" });
+const display = Sora({ subsets: ["latin"], variable: "--font-display" });
+const body = Space_Grotesk({ subsets: ["latin"], variable: "--font-body" });
 
 export const metadata: Metadata = {
-  title: "Health Signal Dashboard",
-  description: "Global health signal intelligence with provider-aware resilience and confidence indicators.",
+  title: "Global Health Signal Command",
+  description: "Operational dashboard for regional health telemetry with confidence and freshness controls.",
+  metadataBase: new URL("https://covid-app-woad.vercel.app"),
+  icons: { icon: "/icon", apple: "/apple-icon" },
+  openGraph: {
+    title: "Global Health Signal Command",
+    description: "Operational dashboard for regional health telemetry.",
+    images: "/opengraph-image",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Global Health Signal Command",
+    description: "Operational dashboard for regional health telemetry.",
+    images: "/twitter-image",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${heading.variable} ${body.variable}`}>
+    <html lang="en" {...mantineHtmlProps} className={`${display.variable} ${body.variable}`}>
+      <head>
+        <ColorSchemeScript defaultColorScheme="light" />
+      </head>
       <body>
         <a className="skip-link" href="#main-content">Skip to main content</a>
         <Providers>{children}</Providers>
