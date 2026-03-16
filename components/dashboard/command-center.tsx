@@ -103,10 +103,10 @@ export function CommandCenter() {
               {query.data?.fallbackUsed ? "Fallback Mode" : "Primary Live"}
             </Badge>
             <Group gap="xs">
-              <Button component={Link} href="/trends" size="xs" variant="light" rightSection={<IconArrowNarrowRight size={14} />}>
+              <Button component={Link} href={"/trends" as Route} size="xs" variant="light" rightSection={<IconArrowNarrowRight size={14} />}>
                 Trends
               </Button>
-              <Button component={Link} href="/sources" size="xs" variant="light" rightSection={<IconArrowNarrowRight size={14} />}>
+              <Button component={Link} href={"/sources" as Route} size="xs" variant="light" rightSection={<IconArrowNarrowRight size={14} />}>
                 Sources
               </Button>
             </Group>

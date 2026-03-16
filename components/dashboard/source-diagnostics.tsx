@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import type { Route } from "next";
 import { Badge, Button, Card, Group, Stack, Table, Text, Title } from "@mantine/core";
 import { IconAlertTriangle, IconShieldCheck } from "@tabler/icons-react";
 import type { DashboardResponse } from "@/features/signals/schema";
@@ -73,8 +74,8 @@ export function SourceDiagnostics({ payload }: SourceDiagnosticsProps) {
       </Card>
 
       <Group>
-        <Button component={Link} href="/">Back to command center</Button>
-        <Button component={Link} href="/trends" variant="light">Open trend workspace</Button>
+        <Button component={Link} href={"/" as Route}>Back to command center</Button>
+        <Button component={Link} href={"/trends" as Route} variant="light">Open trend workspace</Button>
       </Group>
     </Stack>
   );

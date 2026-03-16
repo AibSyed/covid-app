@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import type { Route } from "next";
 import { Badge, Button, Card, Group, SimpleGrid, Stack, Text, Title } from "@mantine/core";
 import type { RegionSnapshot } from "@/features/signals/schema";
 
@@ -56,8 +57,8 @@ export function RegionBrief({ region, freshnessHours, source }: RegionBriefProps
       </Card>
 
       <Group>
-        <Button component={Link} href="/">Back to command center</Button>
-        <Button component={Link} href="/trends" variant="light">Open trend workspace</Button>
+        <Button component={Link} href={"/" as Route}>Back to command center</Button>
+        <Button component={Link} href={"/trends" as Route} variant="light">Open trend workspace</Button>
       </Group>
     </Stack>
   );
