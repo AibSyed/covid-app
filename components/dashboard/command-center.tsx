@@ -8,8 +8,10 @@ import { useQuery } from "@tanstack/react-query";
 import {
   Alert,
   Badge,
+  Box,
   Button,
   Card,
+  Center,
   Grid,
   Group,
   Loader,
@@ -21,6 +23,7 @@ import {
   TextInput,
   Title,
 } from "@mantine/core";
+import { useElementSize } from "@mantine/hooks";
 import {
   IconAlertTriangle,
   IconArrowNarrowRight,
@@ -69,6 +72,7 @@ async function fetchSignals() {
 export function CommandCenter() {
   const [filter, setFilter] = useState("");
   const query = useQuery({ queryKey: ["dashboard-signals"], queryFn: fetchSignals });
+  const { ref: chartRef, width: chartWidth } = useElementSize();
 
   const tableData = useMemo(() => query.data?.regionSeries ?? [], [query.data]);
 
@@ -150,25 +154,33 @@ export function CommandCenter() {
 
             <Grid>
               <Grid.Col span={{ base: 12, lg: 8 }}>
-                <Card withBorder radius="lg" bg="white">
+                <Card withBorder radius="lg" bg="white" style={{ minWidth: 0 }}>
                   <Group justify="space-between" mb="sm">
                     <Title order={4} c="slate.9">Global Trend Drift</Title>
                     <Badge leftSection={<IconStatusChange size={14} />} variant="light" color="indigo">
                       7-day horizon
                     </Badge>
                   </Group>
-                  <AreaChart
-                    h={320}
-                    data={query.data.trendSeries}
-                    dataKey="date"
-                    series={[
-                      { name: "cases", color: "teal.6" },
-                      { name: "deaths", color: "red.6" },
-                    ]}
-                    curveType="natural"
-                    tickLine="none"
-                    withLegend
-                  />
+                  <Box ref={chartRef} w="100%" mih={320}>
+                    {chartWidth > 0 ? (
+                      <AreaChart
+                        h={320}
+                        data={query.data.trendSeries}
+                        dataKey="date"
+                        series={[
+                          { name: "cases", color: "teal.6" },
+                          { name: "deaths", color: "red.6" },
+                        ]}
+                        curveType="natural"
+                        tickLine="none"
+                        withLegend
+                      />
+                    ) : (
+                      <Center h={320}>
+                        <Loader size="sm" />
+                      </Center>
+                    )}
+                  </Box>
                 </Card>
               </Grid.Col>
               <Grid.Col span={{ base: 12, lg: 4 }}>
