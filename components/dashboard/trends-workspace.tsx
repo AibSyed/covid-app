@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import type { Route } from "next";
 import dynamic from "next/dynamic";
 import { useMemo } from "react";
 import { Badge, Button, Card, Group, SimpleGrid, Stack, Text, Title } from "@mantine/core";
@@ -78,10 +79,10 @@ export function TrendsWorkspace({ trendSeries, freshnessHours, confidenceScore }
       </SimpleGrid>
 
       <Group>
-        <Button component={Link} href="/" rightSection={<IconArrowNarrowRight size={14} />}>
+        <Button component={Link} href={"/" as Route} rightSection={<IconArrowNarrowRight size={14} />}>
           Back to command center
         </Button>
-        <Button component={Link} href="/sources" variant="light" rightSection={<IconArrowNarrowRight size={14} />}>
+        <Button component={Link} href={"/sources" as Route} variant="light" rightSection={<IconArrowNarrowRight size={14} />}>
           Open source diagnostics
         </Button>
       </Group>

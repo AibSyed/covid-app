@@ -7,11 +7,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint . --max-warnings 0",
-    "typecheck": "tsc --noEmit",
+    "lint": "biome lint .",
+    "typecheck": "pnpm run typegen && tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
+    "typegen": "node ./scripts/prepare-typegen.mjs && next typegen",
     "check": "pnpm run lint && pnpm run typecheck && pnpm run test && pnpm run build",
     "audit:high": "pnpm audit --audit-level high",
     "docs:lint": "markdownlint-cli2 README.md docs/**/*.md",
@@ -19,30 +20,36 @@
     "docs:check": "pnpm run docs:lint && pnpm run docs:mermaid"
   },
   "dependencies": {
-    "@mantine/charts": "^8.3.5",
-    "@mantine/core": "^8.3.5",
-    "@mantine/dates": "^8.3.5",
-    "@mantine/hooks": "^8.3.5",
-    "@tabler/icons-react": "^3.34.1",
+    "@mantine/charts": "^8.3.17",
+    "@mantine/core": "^8.3.17",
+    "@mantine/dates": "^8.3.17",
+    "@mantine/hooks": "^8.3.17",
+    "@tabler/icons-react": "^3.40.0",
     "@tanstack/react-query": "^5.90.21",
     "@tanstack/react-table": "^8.21.3",
-    "dayjs": "^1.11.18",
-    "framer-motion": "^12.35.0",
+    "dayjs": "^1.11.20",
+    "framer-motion": "^12.36.0",
     "next": "^16.1.6",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
+    "react-is": "^19.2.4",
+    "recharts": "^3.8.0",
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.4.7",
     "@playwright/test": "^1.58.2",
-    "@types/node": "^25.3.3",
+    "@types/node": "^25.5.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "eslint": "^9.39.3",
-    "eslint-config-next": "^16.1.6",
-    "jsdom": "^28.1.0",
+    "happy-dom": "^20.8.4",
     "markdownlint-cli2": "^0.21.0",
     "typescript": "^5.9.3",
-    "vitest": "^4.0.18"
+    "vitest": "^4.1.0"
+  },
+  "pnpm": {
+    "ignoredOptionalDependencies": [
+      "jsdom"
+    ]
   }
 }

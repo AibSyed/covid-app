@@ -2,7 +2,8 @@
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { MantineProvider, createTheme } from "@mantine/core";
-import { PropsWithChildren, useState } from "react";
+import { useState } from "react";
+import type { PropsWithChildren } from "react";
 
 const theme = createTheme({
   primaryColor: "teal",
