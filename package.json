@@ -7,7 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint . --max-warnings 0",
+    "lint": "biome lint .",
     "typecheck": "pnpm run typegen && tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -32,18 +32,23 @@
     "next": "^16.1.6",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
+    "recharts": "^3.8.0",
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.4.7",
     "@playwright/test": "^1.58.2",
     "@types/node": "^25.5.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "eslint": "^9.39.4",
-    "eslint-config-next": "^16.1.6",
-    "jsdom": "^29.0.0",
+    "happy-dom": "^20.8.4",
     "markdownlint-cli2": "^0.21.0",
     "typescript": "^5.9.3",
     "vitest": "^4.1.0"
+  },
+  "pnpm": {
+    "ignoredOptionalDependencies": [
+      "jsdom"
+    ]
   }
 }
