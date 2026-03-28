@@ -2,7 +2,7 @@
   "name": "health-signal-dashboard",
   "version": "3.0.0",
   "private": true,
-  "packageManager": "pnpm@10.6.5",
+  "packageManager": "pnpm@10.18.3",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -20,34 +20,38 @@
     "docs:check": "pnpm run docs:lint && pnpm run docs:mermaid"
   },
   "dependencies": {
-    "@mantine/charts": "^8.3.17",
-    "@mantine/core": "^8.3.17",
-    "@mantine/dates": "^8.3.17",
-    "@mantine/hooks": "^8.3.17",
-    "@tabler/icons-react": "^3.40.0",
-    "@tanstack/react-query": "^5.90.21",
+    "@mantine/charts": "^8.3.18",
+    "@mantine/core": "^8.3.18",
+    "@mantine/dates": "^8.3.18",
+    "@mantine/hooks": "^8.3.18",
+    "@tabler/icons-react": "^3.41.0",
+    "@tanstack/react-query": "^5.95.2",
     "@tanstack/react-table": "^8.21.3",
     "dayjs": "^1.11.20",
     "framer-motion": "^12.38.0",
-    "next": "^16.1.7",
+    "next": "^16.2.1",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-is": "^19.2.4",
-    "recharts": "^3.8.0",
+    "recharts": "^3.8.1",
     "zod": "^4.3.6"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.7",
+    "@biomejs/biome": "^2.4.9",
     "@playwright/test": "^1.58.2",
     "@types/node": "^25.5.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "happy-dom": "^20.8.4",
-    "markdownlint-cli2": "^0.21.0",
-    "typescript": "^5.9.3",
-    "vitest": "^4.1.0"
+    "happy-dom": "^20.8.9",
+    "markdownlint-cli2": "^0.22.0",
+    "typescript": "^6.0.2",
+    "vitest": "^4.1.2"
   },
   "pnpm": {
+    "overrides": {
+      "micromatch>picomatch": "^2.3.2",
+      "vitest>picomatch": "^4.0.4"
+    },
     "ignoredOptionalDependencies": [
       "jsdom"
     ]
